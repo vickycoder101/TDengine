@@ -511,7 +511,8 @@ typedef struct SThreadInfo_S {
     int       threadID;
     char      db_name[TSDB_DB_NAME_LEN];
     uint32_t  time_precision;
-    char      filePath[TSDB_FILENAME_LEN];
+#define TAOS_DEMO_MAX_FILEPATH_LEN 268
+    char      filePath[TAOS_DEMO_MAX_FILEPATH_LEN];
     FILE      *fp;
     char      tb_prefix[TSDB_TABLE_NAME_LEN];
     uint64_t  start_table_from;

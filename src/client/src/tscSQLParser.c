@@ -3568,6 +3568,7 @@ static bool functionCompatibleCheck(SQueryInfo* pQueryInfo, bool joinQuery, bool
   int32_t prjNum = 0;
   int32_t aggNum = 0;
   int32_t scalNum = 0;
+  int32_t tblFuncNum = 0;
 
   size_t numOfExpr = tscNumOfExprs(pQueryInfo);
   assert(numOfExpr > 0);
@@ -3603,6 +3604,10 @@ static bool functionCompatibleCheck(SQueryInfo* pQueryInfo, bool joinQuery, bool
       ++scalNum;
     }
 
+    if ((aAggs[functionId].status & TSDB_FUNCSTATE_SINGLE_TABLE_MO) != 0) {
+      ++tblFuncNum;
+    }
+
     if (functionId == TSDB_FUNC_PRJ && (pExpr1->base.colInfo.colId == PRIMARYKEY_TIMESTAMP_COL_INDEX || TSDB_COL_IS_UD_COL(pExpr1->base.colInfo.flag))) {
       continue;
     }
@@ -3624,19 +3629,19 @@ static bool functionCompatibleCheck(SQueryInfo* pQueryInfo, bool joinQuery, bool
     }
   }
 
-  aggNum = (int32_t)size - prjNum - scalNum - aggUdf - scalarUdf;
+  aggNum = (int32_t)size - prjNum - scalNum - aggUdf - scalarUdf - tblFuncNum;
 
   assert(aggNum >= 0);
 
-  if (aggUdf > 0 && (prjNum > 0 || aggNum > 0 || scalNum > 0 || scalarUdf > 0)) {
+  if (aggUdf > 0 && (prjNum > 0 || aggNum > 0 || scalNum > 0 || scalarUdf > 0 || tblFuncNum > 0)) {
     return false;
   }
 
-  if (scalarUdf > 0 && (aggNum > 0 || scalNum > 0)) {
+  if (scalarUdf > 0 && (aggNum > 0 || scalNum > 0 || tblFuncNum > 0)) {
     return false;
   }
 
-  if (aggNum > 0 && scalNum > 0) {
+  if (aggNum > 0 && (scalNum > 0 || tblFuncNum >0)) {
     return false;
   }
 
@@ -7074,6 +7079,7 @@ static int32_t checkUpdateTagPrjFunctions(SQueryInfo* pQueryInfo, char* msg) {
 
   bool    tagTsColExists = false;
   int16_t numOfScalar = 0;
+  int16_t numOfSingleTableMO = 0;
   int16_t numOfSelectivity = 0;
   int16_t numOfAggregation = 0;
 
@@ -7109,6 +7115,8 @@ static int32_t checkUpdateTagPrjFunctions(SQueryInfo* pQueryInfo, char* msg) {
       numOfSelectivity++;
     } else if ((aAggs[functionId].status & TSDB_FUNCSTATE_SCALAR) != 0) {
       numOfScalar++;
+    } else if ((aAggs[functionId].status & TSDB_FUNCSTATE_SINGLE_TABLE_MO)) {
+      numOfSingleTableMO++;
     } else {
       numOfAggregation++;
     }
