@@ -1,3 +1,4 @@
+add_subdirectory(mAllocator)
 add_subdirectory(transport)
 add_subdirectory(sync)
 add_subdirectory(tkv)
