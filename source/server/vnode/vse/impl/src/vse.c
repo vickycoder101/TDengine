@@ -16,10 +16,9 @@
 #include "vse.h"
 #include "vseDef.h"
 #include "vseOptions.h"
+#include "vseCommit.h"
 
 static int  vseProcessReq(SVnodeSE *pVse, const SRequest *pReq);
-static bool vseShouldCommit(SVnodeSE *pVse);
-static void vseAsyncCommit(SVnodeSE *pVse);
 
 /* ------------------------ IMPL ------------------------ */
 SVnodeSE *vseOpen(const SVSEOptions *pVseOpt) {
@@ -61,13 +60,4 @@ void vseProcessReqBatch(SVnodeSE *pVse, SReqBatch *pReqBatch) {
 static int vseProcessReq(SVnodeSE *pVse, const SRequest *pReq) {
   // TODO
   return 0;
-}
-
-static bool vseShouldCommit(SVnodeSE *pVse) {
-  // TODO
-  return true;
-}
-
-static void vseAsyncCommit(SVnodeSE *pVse) {
-  // TODO
 }
