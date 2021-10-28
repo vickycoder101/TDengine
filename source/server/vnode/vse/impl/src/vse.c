@@ -14,6 +14,7 @@
  */
 
 #include "vse.h"
+#include "vseDef.h"
 #include "vseOptions.h"
 
 static int  vseProcessReq(SVnodeSE *pVse, const SRequest *pReq);
@@ -21,13 +22,13 @@ static bool vseShouldCommit(SVnodeSE *pVse);
 static void vseAsyncCommit(SVnodeSE *pVse);
 
 /* ------------------------ IMPL ------------------------ */
-int vseOpen(SVnodeSE *pVse, const SVSEOptions *pVseOpt) {
+SVnodeSE *vseOpen(const SVSEOptions *pVseOpt) {
   if (!vseValidateOptions(pVseOpt)) {
     /* TODO */
   }
 
   // TODO
-  return 0;
+  return NULL;
 }
 
 void vseClose(SVnodeSE *pVse) {

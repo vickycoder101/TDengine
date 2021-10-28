@@ -4,16 +4,15 @@
 #include "vse.h"
 
 TEST(vseAppTest, create_and_open_vse) {
-  SVnodeSE    vse;
-  SVSEOptions vseOpt;
+  SVnodeSE *pVse;
 
   // Open the VSE
-  if (vseOpen(&vse, &vseOpt) < 0) {
+  if ((pVse = vseOpen(NULL)) == NULL) {
     // TODO
   }
 
   // Close the VSE
-  vseClose(&vse);
+  vseClose(pVse);
 }
 
 TEST(vseAppTest, open_an_existing_vse) {

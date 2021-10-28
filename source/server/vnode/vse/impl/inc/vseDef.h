@@ -13,29 +13,30 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _TD_VSE_H_
-#define _TD_VSE_H_
+#ifndef _TD_VSE_DEF_H_
+#define _TD_VSE_DEF_H_
 
-#include "impl/vseImpl.h"
-#include "treq.h"
+#include "mAllocator.h"
+#include "vse.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* ------------------------ TYPES EXPOSED ------------------------ */
-typedef struct SVnodeSE    SVnodeSE;
-typedef struct SVSEOptions SVSEOptions;
+typedef struct SVSEBufPool {
+  /* TODO */
+} SVSEBufPool;
 
-// SVnodeSE
-SVnodeSE *vseOpen(const SVSEOptions *);
-void      vseClose(SVnodeSE *);
-void      vseProcessReqBatch(SVnodeSE *, SReqBatch *);
-
-// SVSEOptions
+struct SVnodeSE {
+  struct SVSEOptions vseOptions;
+  SVSEBufPool        bufPool;
+  SMemAllocator*     inuse;
+  SMeta*             pMeta;
+  STsdb*             pTsdb;
+};
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /*_TD_VSE_H_*/
+#endif /*_TD_VSE_DEF_H_*/

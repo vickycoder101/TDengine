@@ -16,7 +16,6 @@
 #ifndef _TD_VSE_IMPL_H_
 #define _TD_VSE_IMPL_H_
 
-#include "mAllocator.h"
 #include "meta.h"
 #include "tsdb.h"
 
@@ -24,22 +23,10 @@
 extern "C" {
 #endif
 
-typedef struct SVSEBufPool {
-  /* TODO */
-} SVSEBufPool;
-
 struct SVSEOptions {
   size_t       wBufSize;  // write buffer size
   SMetaOptions metaOpts;
   STsdbOptions tsdbOpts;
-};
-
-struct SVnodeSE {
-  struct SVSEOptions vseOptions;
-  SVSEBufPool        bufPool;
-  SMemAllocator*     inuse;
-  SMeta*             pMeta;
-  STsdb*             pTsdb;
 };
 
 #ifdef __cplusplus
