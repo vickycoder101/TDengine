@@ -17,7 +17,6 @@
 #define _TD_VNODE_INT_H_
 
 #include "amalloc.h"
-#include "meta.h"
 #include "os.h"
 #include "sync.h"
 #include "taosmsg.h"
@@ -25,7 +24,6 @@
 #include "tq.h"
 #include "tqueue.h"
 #include "trpc.h"
-#include "tsdb.h"
 #include "tworker.h"
 #include "vnode.h"
 #include "wal.h"
@@ -47,8 +45,6 @@ typedef struct {
   int32_t         vgId;      // global vnode group ID
   int32_t         refCount;  // reference count
   SMemAllocator  *allocator;
-  SMeta          *pMeta;
-  STsdb          *pTsdb;
   STQ            *pTQ;
   twalh           pWal;
   SyncNodeId      syncNode;

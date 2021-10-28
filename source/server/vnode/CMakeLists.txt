@@ -1,6 +1,5 @@
-add_subdirectory(meta)
 add_subdirectory(tq)
-add_subdirectory(tsdb)
+add_subdirectory(vse)
 
 aux_source_directory(src VNODE_SRC)
 add_library(vnode STATIC ${VNODE_SRC})
@@ -12,10 +11,8 @@ target_include_directories(
 target_link_libraries(
     vnode
     PUBLIC transport
-    PUBLIC meta
+    PUBLIC vse
     PUBLIC tq
-    PUBLIC tsdb
-    PUBLIC wal
     PUBLIC sync
     PUBLIC cjson
 )

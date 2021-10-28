@@ -13,43 +13,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "vnodeInt.h"
+#ifndef _TD_VSE_H_
+#define _TD_VSE_H_
 
-static int vnodeStartCommit(SVnode *pVnode);
-static int vnodeEndCommit(SVnode *pVnode);
-
-int vnodeAsyncCommit(SVnode *pVnode) {
-#if 0
-  if (vnodeStartCommit(pVnode) < 0) {
-    // TODO
-  }
-
-  if (tqCommit(pVnode->pTQ) < 0) {
-    // TODO
-  }
-
-  if (metaCommit(pVnode->pMeta) < 0) {
-    // TODO
-  }
-
-  if (tsdbCommit(pVnode->pTsdb) < 0) {
-    // TODO
-  }
-
-  if (vnodeEndCommit(pVnode) < 0) {
-    // TODO
-  }
-
+#ifdef __cplusplus
+extern "C" {
 #endif
-  return 0;
-}
 
-static int vnodeStartCommit(SVnode *pVnode) {
-  // TODO
-  return 0;
-}
+typedef struct SVnodeSE SVnodeSE;
 
-static int vnodeEndCommit(SVnode *pVnode) {
-  // TODO
-  return 0;
+#ifdef __cplusplus
 }
+#endif
+
+#endif /*_TD_VSE_H_*/

@@ -13,43 +13,35 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "vnodeInt.h"
+#include "vse.h"
 
-static int vnodeStartCommit(SVnode *pVnode);
-static int vnodeEndCommit(SVnode *pVnode);
+typedef void SReqBatch;
+typedef void SRequest;
 
-int vnodeAsyncCommit(SVnode *pVnode) {
-#if 0
-  if (vnodeStartCommit(pVnode) < 0) {
-    // TODO
+int vseProcessReqBatch(SVnodeSE *pvse, SReqBatch *pReqBatch) {
+  for (;;) {
+    /* code: iter the req batch and process each req*/
   }
 
-  if (tqCommit(pVnode->pTQ) < 0) {
-    // TODO
-  }
-
-  if (metaCommit(pVnode->pMeta) < 0) {
-    // TODO
-  }
-
-  if (tsdbCommit(pVnode->pTsdb) < 0) {
-    // TODO
-  }
-
-  if (vnodeEndCommit(pVnode) < 0) {
-    // TODO
-  }
-
-#endif
   return 0;
 }
 
-static int vnodeStartCommit(SVnode *pVnode) {
-  // TODO
-  return 0;
-}
+/* ------------------------ STATIC METHODS ------------------------ */
+static int vseProcessReq(SVnodeSE *pvse, SRequest *pReq) {
+  // int code;
 
-static int vnodeEndCommit(SVnode *pVnode) {
-  // TODO
+
+  // tqPush(pReq);
+
+  // if (1 /* REQUEST is META REQUEST */) {
+  //   code = metaProcessReq(pvse, pReq);
+  // } else {
+  //   code = tsdbProcessReq(pvse, pReq);
+  // }
+
+  // Process the code
+
+  // Send rsp
+
   return 0;
 }
