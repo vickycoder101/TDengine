@@ -8,3 +8,7 @@ target_link_libraries(vse
     PUBLIC meta
     PUBLIC tsdb
 )
+
+if(${BUILD_TEST})
+    add_subdirectory(test)
+endif(${BUILD_TEST})
