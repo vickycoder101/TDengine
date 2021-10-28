@@ -28,6 +28,7 @@ typedef struct SReqBatch     SReqBatch;
 typedef struct SReqBatchIter SReqBatchIter;
 
 // SRequest
+#define REQ_TYPE(pReq) ((pReq)->type)
 
 // SReqBatch
 

@@ -13,9 +13,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "vseOptions.h"
+#ifndef _TD_VSE_OPTIONS_H_
+#define _TD_VSE_OPTIONS_H_
 
-bool vseValidateOptions(const SVSEOptions *pVseOptions) {
-  // TODO
-  return true;
+#include "vse.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+bool vseValidateOptions(const SVSEOptions *);
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif /*_TD_VSE_OPTIONS_H_*/

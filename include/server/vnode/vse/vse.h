@@ -16,8 +16,8 @@
 #ifndef _TD_VSE_H_
 #define _TD_VSE_H_
 
-#include "treq.h"
 #include "impl/vseImpl.h"
+#include "treq.h"
 
 #ifdef __cplusplus
 extern "C" {

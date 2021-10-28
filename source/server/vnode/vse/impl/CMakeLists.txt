@@ -7,6 +7,7 @@ target_include_directories(vse
 target_link_libraries(vse
     PUBLIC meta
     PUBLIC tsdb
+    PUBLIC mAllocator
 )
 
 if(${BUILD_TEST})
