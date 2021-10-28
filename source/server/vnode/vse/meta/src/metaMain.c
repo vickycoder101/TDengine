@@ -21,7 +21,7 @@ static int metaCreateSuperTable(SMeta *pMeta, const char *tbname, const SSuperTa
 static int metaCreateChildTable(SMeta *pMeta, const char *tbname, const SChildTableOpts *pChildTableOpts);
 static int metaCreateNormalTable(SMeta *pMeta, const char *tbname, const SNormalTableOpts *pNormalTableOpts);
 
-SMeta *metaOpen(SMetaOpts *pMetaOpts) {
+SMeta *metaOpen(SMetaOptions *pMetaOpts) {
   SMeta *pMeta = NULL;
 
   pMeta = (SMeta *)calloc(1, sizeof(*pMeta));

@@ -28,7 +28,9 @@ struct SVnodeSE {
 };
 
 struct SVSEOptions {
-  /* data */
+  size_t    wBufSize;  // write buffer size
+  SMetaOptions metaOpts;
+  STsdbOptions tsdbOpts;
 };
 
 #ifdef __cplusplus

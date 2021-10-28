@@ -32,9 +32,9 @@ typedef struct SReqBatchIter SReqBatchIter;
 // SReqBatch
 
 // SReqBatchIter
-void            rbiInit(SReqBatchIter *, const SReqBatch *);
+void            rbiInit(SReqBatchIter *, SReqBatch *);
 const SRequest *rbiNext(SReqBatchIter *);
-void            rbiClear(SReqBatchIter *);
+#define rbiClear(pReqBatch)
 
 #ifdef __cplusplus
 }

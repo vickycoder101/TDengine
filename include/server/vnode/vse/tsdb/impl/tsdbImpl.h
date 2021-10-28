@@ -13,17 +13,22 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "treq.h"
+#ifndef _TD_TSDB_IMPL_H_
+#define _TD_TSDB_IMPL_H_
 
-void rbiInit(SReqBatchIter *pRbi, SReqBatch *pReqBatch) {
-  pRbi->pReqBatch = pReqBatch;
-  pRbi->it = 0;
-}
+#include "os.h"
+#include "taosmsg.h"
 
-const SRequest *rbiNext(SReqBatchIter *pRbi) {
-  if (pRbi->it >= pRbi->pReqBatch->nReqs) {
-    return NULL;
-  } else {
-    return pRbi->pReqBatch->reqs[pRbi->it++];
-  }
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+struct STsdbOptions {
+  /* TODO */
+};
+
+#ifdef __cplusplus
 }
+#endif
+
+#endif /*_TD_TSDB_IMPL_H_*/

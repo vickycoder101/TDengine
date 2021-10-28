@@ -32,7 +32,8 @@ struct SReqBatch {
 };
 
 struct SReqBatchIter {
-  /* data */
+  size_t            it;
+  struct SReqBatch *pReqBatch;
 };
 
 #ifdef __cplusplus

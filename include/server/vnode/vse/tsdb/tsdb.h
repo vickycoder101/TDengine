@@ -16,20 +16,19 @@
 #ifndef _TD_TSDB_H_
 #define _TD_TSDB_H_
 
-#include "os.h"
-#include "taosmsg.h"
+#include "impl/tsdbImpl.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 // Types exported
-typedef struct STsdb             STsdb;
-typedef struct STsdbOptions      STsdbOptions;
-typedef struct STsdbSMAOptions   STsdbSMAOptions;  // SMA stands for Small Materialized Aggregation
-typedef struct STsdbReadOptions  STsdbReadOptions;
-typedef struct STsdbSnapshot     STsdbSnapshot;
-typedef struct STsdbQueryHandle  STsdbQueryHandle;
+typedef struct STsdb            STsdb;
+typedef struct STsdbOptions     STsdbOptions;
+typedef struct STsdbSMAOptions  STsdbSMAOptions;  // SMA stands for Small Materialized Aggregation
+typedef struct STsdbReadOptions STsdbReadOptions;
+typedef struct STsdbSnapshot    STsdbSnapshot;
+typedef struct STsdbQueryHandle STsdbQueryHandle;
 
 // DB operations
 int    tsdbCreate(const char *path);
