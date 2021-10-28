@@ -105,7 +105,7 @@ extern "C" {
 #define TSDB_FUNCSTATE_NEED_TS      0x20u
 
 // selectivity functions. e.g. min/max,top/bottom, first/last etc.
-// function have to set tag/ts via SQLFunctionCtx tagInfo itself. exist along with tag columns.
+// function have to set tag and ts via SQLFunctionCtx tagInfo itself. exist along with tag columns.
 #define TSDB_FUNCSTATE_SELECTIVITY  0x40u
 
 // computation functions that applies to columns of one row. e.g. ceil/floor/round

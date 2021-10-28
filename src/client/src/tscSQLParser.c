@@ -6941,7 +6941,18 @@ void doAddGroupColumnForSubquery(SQueryInfo* pQueryInfo, int32_t tagIndex, SSqlC
   pInfo->visible = false;
 }
 
-static void doUpdateSqlFunctionForTagPrj(SQueryInfo* pQueryInfo) {
+static void doUpdateSqlFunctionForTsPrj(SQueryInfo* pQueryInfo) {
+  size_t size = taosArrayGetSize(pQueryInfo->exprList);
+
+  for (int32_t i = 0; i < size; ++i) {
+    SExprInfo* pExpr = tscExprGet(pQueryInfo, i);
+    if (pExpr->base.functionId == TSDB_FUNC_PRJ && pExpr->base.colInfo.colId == PRIMARYKEY_TIMESTAMP_COL_INDEX) {
+      pExpr->base.functionId = TSDB_FUNC_TS_DUMMY;
+    }
+  }
+}
+
+static void doUpdateSqlFunctionForTagTsPrj(SQueryInfo* pQueryInfo) {
   int32_t tagLength = 0;
   size_t size = taosArrayGetSize(pQueryInfo->exprList);
 
@@ -7129,11 +7140,19 @@ static int32_t checkUpdateTagPrjFunctions(SQueryInfo* pQueryInfo, char* msg) {
       return invalidOperationMsg(msg, msg1);
     }
 
+    if (numOfSingleTableMO > 0) {
+      doUpdateSqlFunctionForTsPrj(pQueryInfo);
+      int32_t code = doUpdateSqlFunctionForColPrj(pQueryInfo);
+      if (code != TSDB_CODE_SUCCESS) {
+        return code;
+      }
+    }
+
     /*
      *  if numOfSelectivity equals to 0, it is a super table projection query
      */
     if (numOfSelectivity == 1) {
-      doUpdateSqlFunctionForTagPrj(pQueryInfo);
+      doUpdateSqlFunctionForTagTsPrj(pQueryInfo);
       int32_t code = doUpdateSqlFunctionForColPrj(pQueryInfo);
       if (code != TSDB_CODE_SUCCESS) {
         return code;
@@ -7159,7 +7178,7 @@ static int32_t checkUpdateTagPrjFunctions(SQueryInfo* pQueryInfo, char* msg) {
         }
       }
 
-      doUpdateSqlFunctionForTagPrj(pQueryInfo);
+      doUpdateSqlFunctionForTagTsPrj(pQueryInfo);
       int32_t code = doUpdateSqlFunctionForColPrj(pQueryInfo);
       if (code != TSDB_CODE_SUCCESS) {
         return code;
