@@ -15,33 +15,53 @@
 
 #include "vse.h"
 
-typedef void SReqBatch;
-typedef void SRequest;
+static int  vseProcessReq(SVnodeSE *pVse, const SRequest *pReq);
+static bool vseShouldCommit(SVnodeSE *pVse);
+static void vseAsyncCommit(SVnodeSE *pVse);
 
-int vseProcessReqBatch(SVnodeSE *pvse, SReqBatch *pReqBatch) {
-  for (;;) {
-    /* code: iter the req batch and process each req*/
-  }
-
+/* ------------------------ IMPL ------------------------ */
+int vseOpen(SVnodeSE *pVse, const SVSEOptions *pVseOpt) {
+  // TODO
   return 0;
 }
 
+void vseClose(SVnodeSE *pVse) {
+  // TODO
+}
+
+void vseProcessReqBatch(SVnodeSE *pVse, SReqBatch *pReqBatch) {
+  SReqBatchIter rbi = {0};
+
+  // Loop to process each request
+  rbiInit(&rbi, pReqBatch);
+  for (;;) {
+    const SRequest *pReq = rbiNext(&rbi);
+    if (pReq == NULL) break;
+    // TODO
+
+    int code = vseProcessReq(pVse, pReq);
+    { /* TODO: handle the code */
+    }
+  }
+  rbiClear(&rbi);
+
+  // Check if the vse should commit
+  if (vseShouldCommit(pVse)) {
+    vseAsyncCommit(pVse);
+  }
+}
+
 /* ------------------------ STATIC METHODS ------------------------ */
-static int vseProcessReq(SVnodeSE *pvse, SRequest *pReq) {
-  // int code;
-
-
-  // tqPush(pReq);
-
-  // if (1 /* REQUEST is META REQUEST */) {
-  //   code = metaProcessReq(pvse, pReq);
-  // } else {
-  //   code = tsdbProcessReq(pvse, pReq);
-  // }
-
-  // Process the code
-
-  // Send rsp
-
+static int vseProcessReq(SVnodeSE *pVse, const SRequest *pReq) {
+  // TODO
   return 0;
+}
+
+static bool vseShouldCommit(SVnodeSE *pVse) {
+  // TODO
+  return true;
+}
+
+static void vseAsyncCommit(SVnodeSE *pVse) {
+  // TODO
 }

@@ -13,29 +13,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _TD_VSE_H_
-#define _TD_VSE_H_
+#ifndef _TD_TREQ_H_
+#define _TD_TREQ_H_
 
-#include "treq.h"
-#include "impl/vseImpl.h"
+#include "impl/treqImpl.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* ------------------------ TYPES EXPOSED ------------------------ */
-typedef struct SVnodeSE    SVnodeSE;
-typedef struct SVSEOptions SVSEOptions;
+// TYPES EXPOSED
+typedef struct SRequest      SRequest;
+typedef struct SReqBatch     SReqBatch;
+typedef struct SReqBatchIter SReqBatchIter;
 
-// SVnodeSE
-int  vseOpen(SVnodeSE *, const SVSEOptions *);
-void vseClose(SVnodeSE *);
-void vseProcessReqBatch(SVnodeSE *, SReqBatch *);
+// SRequest
 
-// SVSEOptions
+// SReqBatch
+
+// SReqBatchIter
+void            rbiInit(SReqBatchIter *, const SReqBatch *);
+const SRequest *rbiNext(SReqBatchIter *);
+void            rbiClear(SReqBatchIter *);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /*_TD_VSE_H_*/
+#endif /*_TD_TREQ_H_*/
