@@ -15,11 +15,32 @@
 
 #include "vseBufPool.h"
 
-int vseBufPoolInit(SVSEBufPool *pBufPool) {
+struct SVSEBufPool {
   // TODO
-  return 0;
+};
+
+SVSEBufPool *vseBufPoolCreate(size_t size) {
+  SVSEBufPool *pBufPool = NULL;
+  // TODO
+  return pBufPool;
 }
 
-void vseBufPoolClear(SVSEBufPool *pBufPool) {
+void vseBufPoolDestroy(SVSEBufPool *pBufPool) {
+  if (pBufPool) {
+    // TODO
+  }
+}
+
+SVSEMemAllocator *vseBufPoolAlloc(SVSEBufPool *pBufPool) {
+  // TODO
+  return NULL;
+}
+
+SVSEMemAllocator *vseBufPoolTryAlloc(SVSEBufPool *pBufPool) {
+  // TODO
+  return NULL;
+}
+
+void vseBufPoolFree(SVSEBufPool *pBufPool, SVSEMemAllocator *pMemAllocator) {
   // TODO
 }

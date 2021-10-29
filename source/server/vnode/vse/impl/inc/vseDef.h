@@ -16,21 +16,16 @@
 #ifndef _TD_VSE_DEF_H_
 #define _TD_VSE_DEF_H_
 
-#include "mAllocator.h"
 #include "vse.h"
+#include "vseBufPool.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct SVSEBufPool {
-  /* TODO */
-} SVSEBufPool;
-
 struct SVnodeSE {
   struct SVSEOptions vseOptions;
-  SVSEBufPool        bufPool;
-  SMemAllocator*     inuse;
+  SVSEBufPool*       pBufPool;
   SMeta*             pMeta;
   STsdb*             pTsdb;
 };

@@ -16,14 +16,23 @@
 #ifndef _TD_VSE_BUFFER_POOL_H_
 #define _TD_VSE_BUFFER_POOL_H_
 
-#include "vseDef.h"
+#include "mAllocator.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int  vseBufPoolInit(SVSEBufPool *pBufPool);
-void vseBufPoolClear(SVSEBufPool *pBufPool);
+typedef struct SVSEBufPool      SVSEBufPool;
+typedef struct SVSEMemAllocator SVSEMemAllocator;
+
+// SVseBufPool
+SVSEBufPool *     vseBufPoolCreate(size_t size);
+void              vseBufPoolDestroy(SVSEBufPool *);
+SVSEMemAllocator *vseBufPoolAlloc(SVSEBufPool *);
+SVSEMemAllocator *vseBufPoolTryAlloc(SVSEBufPool *);
+void              vseBufPoolFree(SVSEBufPool *, SVSEMemAllocator *);
+
+// SVSEMemAllocator
 
 #ifdef __cplusplus
 }
