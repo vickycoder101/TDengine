@@ -13,8 +13,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _TD_VSE_BUF_POOL_H_
-#define _TD_VSE_BUF_POOL_H_
+#ifndef _TD_VSE_BUFFER_POOL_H_
+#define _TD_VSE_BUFFER_POOL_H_
 
 #include "vseDef.h"
 
@@ -29,4 +29,4 @@ void vseBufPoolClear(SVSEBufPool *pBufPool);
 }
 #endif
 
-#endif /*_TD_VSE_BUF_POOL_H_*/
+#endif /*_TD_VSE_BUFFER_POOL_H_*/
