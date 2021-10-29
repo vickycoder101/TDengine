@@ -14,16 +14,25 @@
  */
 
 #include "vse.h"
+#include "vseCommit.h"
 #include "vseDef.h"
 #include "vseOptions.h"
-#include "vseCommit.h"
 
-static int  vseProcessReq(SVnodeSE *pVse, const SRequest *pReq);
+static SVnodeSE *vseNew();
+static void      vseFree(SVnodeSE *pVse);
+static int       vseProcessReq(SVnodeSE *pVse, const SRequest *pReq);
 
 /* ------------------------ IMPL ------------------------ */
 SVnodeSE *vseOpen(const SVSEOptions *pVseOpt) {
+  SVnodeSE *pVse = NULL;
+
   if (!vseValidateOptions(pVseOpt)) {
-    /* TODO */
+    return NULL;
+  }
+
+  pVse = vseNew();
+  if (pVse == NULL) {
+    return NULL;
   }
 
   // TODO
@@ -60,4 +69,18 @@ void vseProcessReqBatch(SVnodeSE *pVse, SReqBatch *pReqBatch) {
 static int vseProcessReq(SVnodeSE *pVse, const SRequest *pReq) {
   // TODO
   return 0;
+}
+
+static SVnodeSE *vseNew() {
+  SVnodeSE *pVse = NULL;
+
+  pVse = (SVnodeSE *)calloc(1, sizeof(*pVse));
+
+  return pVse;
+}
+
+static void vseFree(SVnodeSE *pVse) {
+  if (pVse) {
+    free(pVse);
+  }
 }
